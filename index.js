@@ -18,7 +18,9 @@ bot.on('message', (msg) => {
   switch (msgText) {
     default:
       bot.sendMessage(chatId, 'Invalid command!');
+      break;
     case "/getRecommendation":
       bot.sendMessage(chatId, 'I would recommend the following bars:');
+      break;
   }
 });
