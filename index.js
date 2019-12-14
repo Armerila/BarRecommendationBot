@@ -16,11 +16,11 @@ bot.on('message', (msg) => {
   msgText = msg.text.toString().toLowerCase();
 
   switch (msgText) {
-    default:
-      bot.sendMessage(chatId, 'Invalid command!');
-      break;
     case "/getRecommendation":
       bot.sendMessage(chatId, 'I would recommend the following bars:');
+      break;
+    default:
+      bot.sendMessage(chatId, 'Invalid command!');
       break;
   }
 });
