@@ -13,11 +13,12 @@ bot.on('message', (msg) => {
   // send a message to the chat acknowledging receipt of their message
   //bot.sendMessage(chatId, 'Received your message');
 
-  msgText = msg.text.toString().toLowerCase();
-
+  msgText = msg.text.toString();
+  console.log(msgText);
   switch (msgText) {
     case "/getRecommendation":
       bot.sendMessage(chatId, 'I would recommend the following bars:');
+      console.log("msg from ID: " + msg.from.id);
       break;
     default:
       bot.sendMessage(chatId, 'Invalid command!');
