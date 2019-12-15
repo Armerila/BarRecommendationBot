@@ -5,12 +5,12 @@ module.exports = {
   },
 
   getUserSql: function(userID) {
-    let sql = "SELECT id, displayname FROM users WHERE id = " + userID;
+    let sql = "SELECT id, displayname FROM users WHERE id = '" + userID + "'";
     return sql;
   },
 
   getBarSql: function(barName) {
-    let sql = "SELECT id FROM bars WHERE name = " + barName ;
+    let sql = "SELECT id FROM bars WHERE name = '" + barName + "'";
     return sql;
   },
 
@@ -23,7 +23,7 @@ module.exports = {
     let sql = "INSERT INTO ratings (rating, bar, user) VALUES ('" + rating + "', '" + barID + "', '" + userID + "')"
     return sql;
   },
-  
+
   getAllRatings: function() {
     let sql = "SELECT * FROM ratings";
     return sql;
