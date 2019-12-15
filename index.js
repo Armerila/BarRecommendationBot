@@ -18,25 +18,30 @@ bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   msgText = msg.text.toString();
 
-  if (msg.chat.type == "private") {
+  if (msg.chat.type == "private" && msgText == "/addBar") {
     if (addBarDialog.step1) {
       if (addBarDialog.step2) {
         addBarInfo.address = msgText;
-        bot.sendMessage(chatId, 'A new bar added to the database!');
-        recommendations.insertBar(addBarInfo);
+
+        var dbMsg = recommendations.insertBar(addBarInfo);
+        bot.sendMessage(chatId, dbMsg);
+
         addBarDialog.step1 = false;
         addBarDialog.step2 = false;
+        
       } else {
         addBarInfo.name = msgText;
         bot.sendMessage(chatId, 'Thank you, now give an address for the bar:');
         addBarDialog.step2 = true;
       }
-    } else {
+    }/* else {
       if (msgText == "/addBar") {
         bot.sendMessage(chatId, 'Please give a name for the bar:');
         addBarDialog.step1 = true;
         addBarInfo = {};
       }
-    }
+    }*/
+  } else {
+    
   }
 });
