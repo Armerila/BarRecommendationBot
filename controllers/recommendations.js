@@ -41,7 +41,7 @@ function getUser(userID, userName, callback) {
 
   db.get(query, (err, row) => {
     if (err) {
-      console.log(err);
+      console.log("getUser: " + err);
     } else {
       if (row) {
         callback(row.id + " " + row.displayname);
@@ -56,10 +56,10 @@ function getUser(userID, userName, callback) {
 
 function getBar(barName, callback) {
   let query = sql.getBarSql(barName);
-
+  console.log("getBar barname: " + barname);
   db.get(query, (err, row) => {
     if (err) {
-      console.log(err);
+      console.log("getBar: " + err);
     } else {
       if (row) {
         callback(row.id);
