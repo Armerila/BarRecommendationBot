@@ -91,3 +91,17 @@ function insertRating(userID, barID, rating, callback) {
     }
   });
 }
+
+function getAllRatings() {
+  let query = sql.getAllRatings();
+  db.all(query, (err, rows) => {
+    if (err) {
+      console.log(err);
+    } else {
+        rows.forEach((row) => {
+          console.log(row.rating);
+        });
+      }
+  });
+}
+

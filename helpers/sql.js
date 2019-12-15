@@ -22,5 +22,10 @@ module.exports = {
   insertRatingSql: function(userID, barID, rating) {
     let sql = "INSERT INTO ratings (rating, bar, user) VALUES ('" + rating + "', '" + barID + "', '" + userID + "')"
     return sql;
-  }
+  },
+  
+  getAllRatings: function() {
+    let sql = "SELECT * FROM ratings";
+    return sql;
+  },
 };
