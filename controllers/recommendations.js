@@ -14,10 +14,9 @@ module.exports = {
     console.log(query);
     db.run(query, function(err) {
       if (err) {
-        return "Unable to create a new bar into the database. The bar either already exists, or something else is not working :))";
+        console.log(err);
       } else {
         console.log(`Rows inserted ${this.changes}`);
-        return "Bar added to the database!";
       }
     });
   },

@@ -23,8 +23,8 @@ bot.on('message', (msg) => {
       if (addBarDialog.step2) {
         addBarInfo.address = msgText;
 
-        var dbMsg = recommendations.insertBar(addBarInfo);
-        bot.sendMessage(chatId, dbMsg);
+        recommendations.insertBar(addBarInfo);
+        bot.sendMessage(chatId, "Bar added to the database!");
 
         addBarDialog.step1 = false;
         addBarDialog.step2 = false;
