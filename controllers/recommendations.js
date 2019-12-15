@@ -22,37 +22,37 @@ module.exports = {
   },
 
   insertRating: function(userID, userName, barName, rating) {
-    getUser(userID, userName, function(user) {
-      console.log(user);
+    getUser(userID, userName, function(res) {
+      console.log(res);
     });
   },
 };
 
 function getUser(userID, userName, callback) {
   let query = sql.getUserSql(userID);
-  let user = "";
+  
   db.get(query, (err, row) => {
     if (err) {
       console.log(err);
     } else {
       if (row) {
-        //console.log("Found: " + row.id + " " + row.displayname);
-        user = row.id + " " + row.displayname;
-        callback(user);
-      } /*else {
-        insertUser(userID, userName);
-      }*/
+        callback(row.id + " " + row.displayname);
+      } else {
+        insertUser(userID, userName, function () {
+          console.log("user created!");
+        });
+      }
     }
   });
 }
 
-function insertUser(userID, userName) {
+function insertUser(userID, userName, callback) {
   let query = sql.insertUserSql(userID, userName);
   db.run(query, function(err) {
     if (err) {
       console.log(err);
     } else {
-      console.log(`Rows inserted ${this.changes}`);
+      callback();
     }
   });
 }
