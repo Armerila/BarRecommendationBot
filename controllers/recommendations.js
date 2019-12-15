@@ -12,7 +12,7 @@ module.exports = {
   insertBar: function(bar) {
     let query = sql.insertBarSql(bar.name, bar.address);
     console.log(query);
-    db.run(query, languages, function(err) {
+    db.run(query, function(err) {
       if (err) {
         return console.error(err.message);
       }
