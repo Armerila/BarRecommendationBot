@@ -22,21 +22,26 @@ module.exports = {
   },
 
   insertRating: function(userID, userName, barName, rating) {
-    getUser(userID, userName);
+    getUser(userID, userName, function(user) {
+      console.log(user);
+    });
   },
 };
 
-function getUser(userID, userName) {
+function getUser(userID, userName, callback) {
   let query = sql.getUserSql(userID);
+  let user = "";
   db.get(query, (err, row) => {
     if (err) {
       console.log(err);
     } else {
       if (row) {
-        console.log("Found: " + row.id + " " + row.displayname);
-      } else {
+        //console.log("Found: " + row.id + " " + row.displayname);
+        user = row.id + " " + row.displayname;
+        callback(user);
+      } /*else {
         insertUser(userID, userName);
-      }
+      }*/
     }
   });
 }
