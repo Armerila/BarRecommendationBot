@@ -9,8 +9,18 @@ module.exports = {
     return sql;
   },
 
+  getBarSql: function(barName) {
+    let sql = "SELECT id FROM bars WHERE name = " + barName ;
+    return sql;
+  },
+
   insertUserSql: function(userID, userName) {
     let sql = "INSERT INTO users (id, displayname) VALUES ('" + userID + "', '" + userName + "')";
+    return sql;
+  },
+
+  insertRatingSql: function(userID, barID, rating) {
+    let sql = "INSERT INTO ratings (rating, bar, user) VALUES ('" + rating + "', '" + barID + "', '" + userID + "')"
     return sql;
   }
 };

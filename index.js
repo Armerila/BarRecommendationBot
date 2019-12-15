@@ -41,7 +41,9 @@ bot.on('message', (msg) => {
     }
   } else {
     if (msgText == "/rateBar") {
-      recommendations.insertRating(msg.from.id, msg.from.username);
+      recommendations.insertRating(msg.from.id, msg.from.username, "Ylä-ale", 5, function(res) {
+        bot.sendMessage(chatId, res);
+      });
     }
   }
 });
