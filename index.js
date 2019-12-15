@@ -28,19 +28,17 @@ bot.on('message', (msg) => {
 
         addBarDialog.step1 = false;
         addBarDialog.step2 = false;
-        
+
       } else {
         addBarInfo.name = msgText;
         bot.sendMessage(chatId, 'Thank you, now give an address for the bar:');
         addBarDialog.step2 = true;
       }
-    }/* else {
-      if (msgText == "/addBar") {
-        bot.sendMessage(chatId, 'Please give a name for the bar:');
-        addBarDialog.step1 = true;
-        addBarInfo = {};
-      }
-    }*/
+    } else {
+      bot.sendMessage(chatId, 'Please give a name for the bar:');
+      addBarDialog.step1 = true;
+      addBarInfo = {};
+    }
   } else {
     
   }
