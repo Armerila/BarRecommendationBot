@@ -40,6 +40,8 @@ bot.on('message', (msg) => {
       addBarInfo = {};
     }
   } else {
-    
+    if (msgText == "/rateBar") {
+      recommendations.insertRating(msg.from.id, msg.from.username);
+    }
   }
 });

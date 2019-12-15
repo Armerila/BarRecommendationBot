@@ -20,5 +20,34 @@ module.exports = {
       }
     });
   },
+
+  insertRating: function(userID, userName, barName, rating) {
+    getUser(userID, userName);
+  },
 };
 
+function getUser(userID, userName) {
+  let query = sql.getUserSql(userID);
+  db.get(query, (err, row) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (row) {
+        console.log("Found: " + row.id + " " + row.displayname);
+      } else {
+        insertUser(userID, userName);
+      }
+    }
+  });
+}
+
+function insertUser(userID, userName) {
+  let query = sql.insertUserSql(userID, userName);
+  db.run(query, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(`Rows inserted ${this.changes}`);
+    }
+  });
+}

@@ -3,4 +3,14 @@ module.exports = {
     let sql = "INSERT INTO bars (name, address) VALUES ('" + name + "', '" + address + "')";
     return sql;
   },
+
+  getUserSql: function(userID) {
+    let sql = "SELECT id, displayname FROM users WHERE id = " + userID;
+    return sql;
+  },
+
+  insertUserSql: function(userID, userName) {
+    let sql = "INSERT INTO users (id, displayname) VALUES ('" + userID + "', '" + userName + "')";
+    return sql;
+  }
 };
