@@ -12,5 +12,10 @@ module.exports = {
   insertUserSql: function(userID, userName) {
     let sql = "INSERT INTO users (id, displayname) VALUES ('" + userID + "', '" + userName + "')";
     return sql;
-  }
+  },
+
+  getAllRatings: function() {
+    let sql = "SELECT * FROM ratings";
+    return sql;
+  },
 };
