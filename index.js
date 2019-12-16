@@ -70,7 +70,10 @@ bot.on('message', (msg) => {
         });
         
         recommendations.getSingleRecommendation(userRatings, senderIndex,function(res) {
-          bot.sendMessage(chatId, "I would recommend the following bar for you:\n*" + allBars[res[0].itemId - 1].name + "*, " + allBars[res[0].itemId - 1].address);
+          bot.sendMessage(chatId, "I would recommend the following 3 bars for you:\n" 
+          + "1. " + allBars[res[0].itemId - 1].name + ", " + allBars[res[0].itemId - 1].address
+          + "2. " + allBars[res[1].itemId - 1].name + ", " + allBars[res[1].itemId - 1].address
+          + "3. " + allBars[res[2].itemId - 1].name + ", " + allBars[res[2].itemId - 1].address);
         });
       });
     }
