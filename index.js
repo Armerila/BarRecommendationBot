@@ -48,6 +48,27 @@ bot.on('message', (msg) => {
           bot.sendMessage(chatId, res);
         });
       }
+    } else if (msgText.indexOf("/getSingleRecommendation") > -1) {
+      recommendations.getRatingData(function(allUsers, allBars, allRatings) {
+        let userRatings = [];
+        allUsers.forEach((user) => {
+          let ratings = [];
+          allBars.forEach((bar) => {
+            var uRating = 0;
+            allRatings.forEach((rating) => {
+              if (rating.bar == bar.id && rating.user == user.id) {
+                uRating = rating.rating;
+              }
+            });
+            ratings.push(uRating);
+          });
+          userRatings.push(ratings);
+        });
+        
+        recommendations.getSingleRecommendation(userRatings, function(res) {
+          console.log(res);
+        });
+      });
     }
   }
 });

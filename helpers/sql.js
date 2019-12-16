@@ -9,8 +9,28 @@ module.exports = {
     return sql;
   },
 
+  getAllUsersSql: function() {
+    let sql = "SELECT * FROM users";
+    return sql;
+  },
+
+  getUsersRating: function(userID, barID) {
+    let sql = "SELECT rating FROM ratings WHERE user = '" + userID + "' AND bar = '" + barID + "'";
+    return sql;
+  },
+
+  getUsersRatings: function(userID) {
+    let sql = "SELECT rating FROM ratings WHERE user = '" + userID + "'";
+    return sql;
+  },
+
   getBarSql: function(barName) {
     let sql = "SELECT id FROM bars WHERE name = '" + barName + "'";
+    return sql;
+  },
+
+  getAllBarsSql: function() {
+    let sql = "SELECT * from bars";
     return sql;
   },
 
