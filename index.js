@@ -54,6 +54,7 @@ bot.on('message', (msg) => {
         let senderIndex = 0;
         allUsers.forEach((user, index) => {
           let ratings = [];
+          console.log(index);
           if (user.id == msg.from.id) {
             senderIndex = index;
           }
