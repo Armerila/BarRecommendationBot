@@ -1,7 +1,7 @@
 let sql = require("../helpers/sql");
 const sqlite3 = require('sqlite3').verbose();
 
-let db = new sqlite3.Database('../BarBot.db', (err) => {
+let db = new sqlite3.Database('../sqlite/BarBot.db', (err) => {
   if (err) {
     console.error(err.message);
   }
@@ -23,10 +23,11 @@ module.exports = {
 
   insertRating: function(userID, userName, barName, rating, callback) {
     getUser(userID, userName, function(res) {
-      console.log("Response: " + res);
       getBar(barName, function(res) {
         if (res) {
-          callback("Found a bar!");
+          insertRating(userID, res, rating, function() {
+            callback("Thank you for rating " + barName + "!");
+          });
         } else {
           callback("No such bar exists!");
         }
@@ -41,7 +42,6 @@ function getUser(userID, userName, callback) {
 
   db.get(query, (err, row) => {
     if (err) {
-      console.log("getUser: " + err);
     } else {
       if (row) {
         callback(row.id + " " + row.displayname);
@@ -56,7 +56,6 @@ function getUser(userID, userName, callback) {
 
 function getBar(barName, callback) {
   let query = sql.getBarSql(barName);
-  console.log("getBar barname: " + barname);
   db.get(query, (err, row) => {
     if (err) {
       console.log("getBar: " + err);

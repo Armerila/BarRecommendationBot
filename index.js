@@ -40,10 +40,14 @@ bot.on('message', (msg) => {
       addBarInfo = {};
     }
   } else {
-    if (msgText == "/rateBar") {
-      recommendations.insertRating(msg.from.id, msg.from.username, "Ylä-ale", 5, function(res) {
-        bot.sendMessage(chatId, res);
-      });
+    if (msgText.indexOf("/rateBar") > -1) {
+      let rating = msgText.split(" ");
+
+      if (rating.length == 3) {
+        recommendations.insertRating(msg.from.id, msg.from.username, rating[1], rating[2], function(res) {
+          bot.sendMessage(chatId, res);
+        });
+      }
     }
   }
 });
