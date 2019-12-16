@@ -51,8 +51,12 @@ bot.on('message', (msg) => {
     } else if (msgText.indexOf("/getSingleRecommendation") > -1) {
       recommendations.getRatingData(function(allUsers, allBars, allRatings) {
         let userRatings = [];
-        allUsers.forEach((user) => {
+        let senderIndex = 0;
+        allUsers.forEach((user, index) => {
           let ratings = [];
+          if (user.id == msg.from.id) {
+            senderIndex = index;
+          }
           allBars.forEach((bar) => {
             var uRating = 0;
             allRatings.forEach((rating) => {
@@ -65,7 +69,7 @@ bot.on('message', (msg) => {
           userRatings.push(ratings);
         });
         
-        recommendations.getSingleRecommendation(userRatings, msg.from.id,function(res) {
+        recommendations.getSingleRecommendation(userRatings, senderIndex,function(res) {
           console.log(res);
         });
       });
