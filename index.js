@@ -50,6 +50,7 @@ bot.on('message', (msg) => {
       }
     } else if (msgText.indexOf("/getSingleRecommendation") > -1) {
       recommendations.getRatingData(function(allUsers, allBars, allRatings) {
+        console.log(allUsers);
         let userRatings = [];
         let senderIndex = 0;
         allUsers.forEach((user, index) => {
