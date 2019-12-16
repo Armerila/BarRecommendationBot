@@ -65,7 +65,7 @@ bot.on('message', (msg) => {
           userRatings.push(ratings);
         });
         
-        recommendations.getSingleRecommendation(userRatings, function(res) {
+        recommendations.getSingleRecommendation(userRatings, msg.from.id,function(res) {
           console.log(res);
         });
       });

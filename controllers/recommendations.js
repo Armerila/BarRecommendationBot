@@ -54,10 +54,8 @@ module.exports = {
     });
   },
 
-  getSingleRecommendation: function(userRatings, callback) {
-    console.log(userRatings);
+  getSingleRecommendation: function(userRatings, userIndex, callback) {
     recommender.getTopCFRecommendations(userRatings, 0, {limit: 3}, (recommendations) => {
-      console.log(recommendations);
       callback(recommendations);
     });
   }
