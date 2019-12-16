@@ -70,7 +70,7 @@ bot.on('message', (msg) => {
         });
         
         recommendations.getSingleRecommendation(userRatings, senderIndex,function(res) {
-          bot.sendMessage(chatId, "I would recommend the following bar for you:\n" + allBars[res[0].itemId - 1].name);
+          bot.sendMessage(chatId, "I would recommend the following bar for you:\n*" + allBars[res[0].itemId - 1].name + "*, " + allBars[res[0].itemId - 1].address);
         });
       });
     }
